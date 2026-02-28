@@ -8,6 +8,9 @@ public class PlayerControllerX : MonoBehaviour
     public float rotationSpeed;
     public float verticalInput;
     public float horizontalInput;
+    public Camera mainCamera;
+    public Camera hoodCamera;
+    public KeyCode switchKey;
 
     // Start is called before the first frame update
     void Start()
@@ -27,5 +30,11 @@ public class PlayerControllerX : MonoBehaviour
         transform.Translate(Vector3.forward * Time.deltaTime * speed * horizontalInput);
         // tilt the plane up/down based on up/down arrow keys
         transform.Rotate(Vector3.left * rotationSpeed* verticalInput * Time.deltaTime);
+
+        if(Input.GetKeyDown(switchKey))
+        {
+            mainCamera.enabled = !mainCamera.enabled;
+            hoodCamera.enabled = !hoodCamera.enabled;
+        }
     }
 }
